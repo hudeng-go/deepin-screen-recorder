@@ -1,8 +1,8 @@
 name: cppcheck
-on:
-  pull_request_target:
-    paths-ignore:
-      - ".github/workflows/**"
+on: [push]
+  # push:
+    # paths-ignore:
+    #   - ".github/workflows/**"
 
 concurrency:
   group: ${{ github.workflow }}-pull/${{ github.event.number }}
@@ -18,7 +18,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
-      - uses: linuxdeepin/action-cppcheck@main
+      - uses: hudeng-go/action-cppcheck@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
